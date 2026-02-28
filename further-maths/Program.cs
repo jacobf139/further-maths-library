@@ -13,16 +13,14 @@ namespace further_maths
     {
         static void Main(string[] args)
         {
-            ComplexNum num1 = new ComplexNum(1,2);
-            Vector v1 = new Vector(3);
-            Rational fraction = new Rational(1, 2);
-            v1[0] = 1;
-            v1[1] = 2;
-            v1[2] = 3;
+            Polynomial fun1 = new Polynomial(2);
 
-            Console.WriteLine(v1);
-            Console.WriteLine(num1);
-            Console.WriteLine(fraction);
+            fun1[0] = 1;
+            fun1[1] = 2;
+            fun1[2] = 3;
+
+            Console.WriteLine(fun1.NthDerivative(3));
+            // foreach (ComplexNum solution in fun1.FindRoots()) Console.WriteLine(solution);
         }
     }
 }

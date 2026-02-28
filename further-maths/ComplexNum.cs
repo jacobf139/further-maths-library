@@ -87,6 +87,7 @@ namespace further_maths
             if (Re < 0 && Im < 0) theta -= Math.PI;
             return theta;
         }
+        public bool IsReal() => Im == 0;
         public static ComplexNum Sqrt(double num)
         {
             if (num >= 0) return new ComplexNum(Math.Sqrt(num), 0);

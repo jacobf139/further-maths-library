@@ -44,7 +44,7 @@ namespace further_maths
             double CosineOfAngle = dotProduct / (vector1.Magnitude() * vector2.Magnitude());
             return Math.Acos(CosineOfAngle) * 180/Math.PI;
         }
-        public override string ToString()
+        public override string ToString() 
         {
             if (this.Length() == 1) return $"{this[0]}i";
             if (this.Length() == 2) return $"{this[0]}i+{this[1]}j";
