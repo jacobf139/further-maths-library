@@ -17,7 +17,7 @@ Uses an array of doubles to store a matrix, with support for standard operations
 
 ```.ToVector()``` - Converts any nx1 matrix into a vector.
 
-```Matrix.Identity( int: size)``` - Returns an identity matrix of the given size.
+```Matrix.Identity( int: size )``` - Returns an identity matrix of the given size.
 
 
 ## Vectors
@@ -71,3 +71,19 @@ Stores a rational number as a ratio between 2 integers (numerator and denominato
 ```.ToString()``` - Returns the string representing the number. e.g. 3/4
 
 ```Rational.DoubleToRational( double: num )``` - converts the input double into a fraction.
+
+## Polynomials
+Class: ```Polynomial```
+
+Stores a polynomial as an integer array where each index represents the coefficient of the equivalent power of x. The coefficients can be accessed via square bracket indexing.
+### Functions
+
+```.Evaluate( double: x )``` - Evaluate the expression given the specified value of x.
+
+```.FindRoots()``` - Finds the solutions to the equation when f(x) = 0, including complex solutions via the ```ComplexNum``` class. (note: not implemented for polynomials of degree > 2)
+
+```.Derivative()``` - Outputs the derivative of the function.
+
+```.NthDerivative( int: n )``` - Outputs the result of differentiating a function n times.
+
+```ToString()``` - Converts the polynomial into a string. e.g. 2x^2+3x+4
