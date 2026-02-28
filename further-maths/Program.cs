@@ -13,16 +13,16 @@ namespace further_maths
     {
         static void Main(string[] args)
         {
-            ComplexNum num1 = ComplexNum.Parse("1+1i");
-            ComplexNum power = ComplexNum.Pow(num1, 0.5);
+            ComplexNum num1 = new ComplexNum(1,2);
             Vector v1 = new Vector(3);
+            Rational fraction = new Rational(1, 2);
             v1[0] = 1;
             v1[1] = 2;
-            v1[2] = 4;
+            v1[2] = 3;
 
             Console.WriteLine(v1);
-            Console.WriteLine(num1.modulus());
-            Console.WriteLine(power);
+            Console.WriteLine(num1);
+            Console.WriteLine(fraction);
         }
     }
 }

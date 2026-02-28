@@ -65,6 +65,7 @@ namespace further_maths
             return result;
         }
         public static implicit operator ComplexNum(double num) => new ComplexNum(num, 0);
+        public static readonly ComplexNum I = new ComplexNum(0, 1);
         public ComplexNum conjugate()
         {
             ComplexNum result = new(0,0);
