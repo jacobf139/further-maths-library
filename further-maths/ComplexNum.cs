@@ -98,5 +98,7 @@ namespace further_maths
             double resultIm = num.modulus() * Math.Sin(num.argument() * power);
             return new ComplexNum(resultRe, resultIm);
         }
+        public static ComplexNum Log(ComplexNum num, double logBase) => new ComplexNum(0, (num.argument() * Math.Log(num.modulus() * Math.E, logBase)));
+        public static implicit operator String(ComplexNum num) => num.ToString();
     }
 }

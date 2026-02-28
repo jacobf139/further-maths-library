@@ -126,5 +126,6 @@ namespace further_maths
             return new Rational(value, 1);
         }
         public static implicit operator Rational(double value) => DoubleToRational(value);
+        public static implicit operator String(Rational num) => num.ToString();
     }
 }

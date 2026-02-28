@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,7 +15,7 @@ namespace further_maths
         public double this[int index]
         {
             get { return matrix[index, 0]; }
-            set { matrix[index,1] = value; }
+            set { matrix[index,0] = value; }
         }
         public Matrix ToMatrix() => matrix;
         public int Length() => matrix.dim(0);
@@ -43,5 +44,13 @@ namespace further_maths
             double CosineOfAngle = dotProduct / (vector1.Magnitude() * vector2.Magnitude());
             return Math.Acos(CosineOfAngle) * 180/Math.PI;
         }
+        public override string ToString()
+        {
+            if (this.Length() == 1) return $"{this[0]}i";
+            if (this.Length() == 2) return $"{this[0]}i+{this[1]}j";
+            if (this.Length() == 3) return $"{this[0]}i+{this[1]}j+{this[2]}k";
+            else throw new NotImplementedException("Haven't implemented ToString() for vectors of a length > 3.");
+        }
+        public static implicit operator String(Vector v1) => v1.ToString();
     }
 }
