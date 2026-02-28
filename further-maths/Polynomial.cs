@@ -29,21 +29,6 @@ namespace further_maths
                 sum += coefficients[i] * Math.Pow(x, i);
             }
             return sum;
-        }
-        public ComplexNum[] FindRoots()
-        {
-            ComplexNum[] solutions = new ComplexNum[order];
-            if (order == 1)
-            {
-                solutions[0] = -coefficients[0] / coefficients[1];
-            }
-            else if (order == 2)
-            {
-                solutions[0] = (-coefficients[1] - ComplexNum.Sqrt(this.Discriminant())) / (2 * coefficients[2]);
-                solutions[1] = (-coefficients[1] + ComplexNum.Sqrt(this.Discriminant())) / (2 * coefficients[2]);
-            }
-            else throw new NotImplementedException("Haven't implemented finding solutions for any polynomial with a degree above 2");
-            return solutions;
         }        
         public override string ToString()
         {
@@ -81,5 +66,12 @@ namespace further_maths
     {
         public Quadratic() : base(2) { }
         public double Discriminant() => Math.Pow(coefficients[1], 2) - (4 * coefficients[2] * coefficients[0]);
+        public ComplexNum[] FindRoots()
+        {
+            ComplexNum[] solutions = new ComplexNum[order];
+            solutions[0] = (-coefficients[1] - ComplexNum.Sqrt(this.Discriminant())) / (2 * coefficients[2]);
+            solutions[1] = (-coefficients[1] + ComplexNum.Sqrt(this.Discriminant())) / (2 * coefficients[2]);
+            return solutions;
+        }
     }
 }
