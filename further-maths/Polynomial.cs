@@ -8,8 +8,8 @@ namespace further_maths
 {
     internal class Polynomial
     {
-        private int order;
-        private double[] coefficients;
+        protected int order;
+        protected double[] coefficients;
         public Polynomial(int degree)
         {
             if (degree < 0) throw new ArgumentException("Cannot have a polynomial with an order of less than 0.");
@@ -44,12 +44,7 @@ namespace further_maths
             }
             else throw new NotImplementedException("Haven't implemented finding solutions for any polynomial with a degree above 2");
             return solutions;
-        }
-        public double Discriminant()
-        {
-            if (order != 2) throw new InvalidOperationException("Can only find the discriminant of a polynomial which isn't a quadratic.");
-            return Math.Pow(coefficients[1], 2) - (4 * coefficients[2] * coefficients[0]);
-        }
+        }        
         public override string ToString()
         {
             string result = "";
@@ -81,5 +76,10 @@ namespace further_maths
             return output;
         }
         public static implicit operator String(Polynomial fun) => fun.ToString();
+    } 
+    internal class Quadratic : Polynomial
+    {
+        public Quadratic() : base(2) { }
+        public double Discriminant() => Math.Pow(coefficients[1], 2) - (4 * coefficients[2] * coefficients[0]);
     }
 }
