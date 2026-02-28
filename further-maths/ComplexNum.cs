@@ -77,6 +77,7 @@ namespace further_maths
         {
             if (this.Im == 0) return $"{Re}";
             if (this.Re == 0) return $"{Im}i";
+            if (this.Im < 0) return $"{Re}{Im}i";
             return $"{Re}+{Im}i";
         }
         public double modulus() => Math.Sqrt(Re * Re + Im * Im);

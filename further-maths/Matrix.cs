@@ -70,7 +70,7 @@ namespace further_maths
             if (matrix.GetLength(0) == 2) return matrix[0, 0] * matrix[1, 1] - matrix[1, 0] * matrix[0, 1];
 
             // for dim > 2 matrices
-            return 0;
+            throw new NotImplementedException("Matrix determinants of matrices larger than 2x2 size are not implemented.");
         }
         /// <summary>
         /// Find the inverse of the matrix
@@ -78,7 +78,7 @@ namespace further_maths
         /// <returns></returns>
         public Matrix inverse()
         {
-            if (this.det() == 0) throw new DimensionMismatch();
+            if (this.det() == 0) throw new DimensionMismatch("Singular matrices do not have an inverse.");
             Matrix result = new Matrix(matrix.GetLength(0), matrix.GetLength(1));
 
             if (matrix.GetLength(0) == 2)
