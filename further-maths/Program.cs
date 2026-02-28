@@ -13,14 +13,8 @@ namespace further_maths
     {
         static void Main(string[] args)
         {
-            Polynomial fun1 = new Polynomial(2);
-
-            fun1[0] = 1;
-            fun1[1] = 2;
-            fun1[2] = 3;
-
-            Console.WriteLine(fun1.NthDerivative(3));
-            // foreach (ComplexNum solution in fun1.FindRoots()) Console.WriteLine(solution);
+            ComplexNum num1 = ComplexNum.Parse("0+1i");
+            Console.WriteLine(ComplexNum.Pow(num1, 2));
         }
     }
 }

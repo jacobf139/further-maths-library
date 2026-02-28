@@ -96,8 +96,8 @@ namespace further_maths
         public static ComplexNum Sqrt(ComplexNum num) => ComplexNum.Pow(num, 0.5);
         public static ComplexNum Pow(ComplexNum num, double power)
         {
-            double resultRe = num.modulus() * Math.Cos(num.argument() * power);
-            double resultIm = num.modulus() * Math.Sin(num.argument() * power);
+            double resultRe = Math.Pow(num.modulus(),power) * Math.Cos(num.argument() * power);
+            double resultIm = Math.Pow(num.modulus(), power) * Math.Sin(num.argument() * power);
             return new ComplexNum(resultRe, resultIm);
         }
         public static ComplexNum Log(ComplexNum num, double logBase) => new ComplexNum(0, (num.argument() * Math.Log(num.modulus() * Math.E, logBase)));
