@@ -14,7 +14,7 @@ namespace further_maths
         static void Main(string[] args)
         {
             ComplexNum num1 = ComplexNum.Parse("3+-2i");
-            Console.WriteLine(ComplexNum.Pow(num1, 1));
+            Console.WriteLine(ComplexNum.Pow(num1, -1));
         }
     }
 }
