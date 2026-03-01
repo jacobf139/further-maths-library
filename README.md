@@ -80,10 +80,19 @@ Stores a polynomial as an integer array where each index represents the coeffici
 
 ```.Evaluate( double: x )``` - Evaluate the expression given the specified value of x.
 
-```.FindRoots()``` - Finds the solutions to the equation when f(x) = 0, including complex solutions via the ```ComplexNum``` class. (note: not implemented for polynomials of degree > 2)
-
 ```.Derivative()``` - Outputs the derivative of the function.
 
 ```.NthDerivative( int: n )``` - Outputs the result of differentiating a function n times.
 
 ```ToString()``` - Converts the polynomial into a string. e.g. 2x^2+3x+4
+
+### Subclass: Quadratic
+Class: ```Quadratic```
+
+A 2nd degree polynomial.
+
+### Functions
+
+```Discriminant()``` - Finds the discriminant of a quadratic.
+
+```FindRoots()``` - Finds the roots (includng complex roots) of the quadratic via the quadratic formula.
