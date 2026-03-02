@@ -66,6 +66,10 @@ namespace further_maths
         }
         public static implicit operator ComplexNum(double num) => new ComplexNum(num, 0);
         public static readonly ComplexNum I = new ComplexNum(0, 1);
+        /// <summary>
+        /// Returns the complex conjugate of the number.
+        /// </summary>
+        /// <returns></returns>
         public ComplexNum conjugate()
         {
             ComplexNum result = new(0,0);
@@ -73,6 +77,10 @@ namespace further_maths
             result.Im = -1 * Im;
             return result;
         }
+        /// <summary>
+        /// Returns a string representing the number.
+        /// </summary>
+        /// <returns></returns>
         public new string ToString()
         {
             if (this.Im == 0) return $"{Re}";
@@ -80,7 +88,15 @@ namespace further_maths
             if (this.Im < 0) return $"{Re}{Im}i";
             return $"{Re}+{Im}i";
         }
+        /// <summary>
+        /// Returns the modulus of the complex number.
+        /// </summary>
+        /// <returns></returns>
         public double modulus() => Math.Sqrt(Re * Re + Im * Im);
+        /// <summary>
+        /// Calculates the argument of the complex number in radians.
+        /// </summary>
+        /// <returns></returns>
         public double argument()
         {
             double theta = Math.Atan(Im / Re);
@@ -88,13 +104,33 @@ namespace further_maths
             if (Re < 0 && Im < 0) theta -= Math.PI;
             return theta;
         }
+        /// <summary>
+        /// Returns whether the number is real. (if it has no imaginary part)
+        /// </summary>
+        /// <returns></returns>
         public bool IsReal() => Im == 0;
+        /// <summary>
+        /// Calculates the Square root of the number, including complex values.
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
         public static ComplexNum Sqrt(double num)
         {
             if (num >= 0) return new ComplexNum(Math.Sqrt(num), 0);
             return new ComplexNum(0, Math.Sqrt(Math.Abs(num)));
         }
+        /// <summary>
+        /// Calculates the Square root of the number, including complex values.
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
         public static ComplexNum Sqrt(ComplexNum num) => ComplexNum.Pow(num, 0.5);
+        /// <summary>
+        /// Calculates Calculates the number to a power, including complex values.
+        /// </summary>
+        /// <param name="num"></param>
+        /// <param name="power"></param>
+        /// <returns></returns>
         public static ComplexNum Pow(ComplexNum num, double power)
         {
             if (power % 1 == 0 && power > 0)
@@ -102,13 +138,20 @@ namespace further_maths
                 ComplexNum initialNum = num;
                 for (int i = 1; i < power; i++) num *= initialNum;
                 return num;
-            } else
+            } 
+            else
             {
                 double resultRe = Math.Pow(num.modulus(), power) * Math.Cos(num.argument() * power);
                 double resultIm = Math.Pow(num.modulus(), power) * Math.Sin(num.argument() * power);
                 return new ComplexNum(resultRe, resultIm);
             }
         }
+        /// <summary>
+        /// Calculates the logarithm of a number with a given base, including complex values.
+        /// </summary>
+        /// <param name="num">Number to take logarithm of</param>
+        /// <param name="logBase">Base of the logarithm</param>
+        /// <returns></returns>
         public static ComplexNum Log(ComplexNum num, double logBase) => new ComplexNum(0, (num.argument() * Math.Log(num.modulus() * Math.E, logBase)));
         public static implicit operator String(ComplexNum num) => num.ToString();
     }

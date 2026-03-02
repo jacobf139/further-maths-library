@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.Marshalling;
@@ -15,6 +16,7 @@ namespace further_maths
         {
             ComplexNum num1 = ComplexNum.Parse("3+-2i");
             Console.WriteLine(ComplexNum.Pow(num1, -1));
+            Matrix m1 = Matrix.Identity(2);
         }
     }
 }

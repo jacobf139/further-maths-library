@@ -17,8 +17,23 @@ namespace further_maths
             get { return matrix[index, 0]; }
             set { matrix[index,0] = value; }
         }
+        /// <summary>
+        /// Converts the current object to the matrix class.
+        /// </summary>
+        /// <returns></returns>
         public Matrix ToMatrix() => matrix;
+        /// <summary>
+        /// Returns the length of the current vector.
+        /// </summary>
+        /// <returns></returns>
         public int Length() => matrix.dim(0);
+        /// <summary>
+        /// Returns the dot product of two vector objects.
+        /// </summary>
+        /// <param name="vector1">First Vector</param>
+        /// <param name="vector2">Second Vector</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException">Thrown if the vectors have a different length.</exception>
         public static double Dot(Vector vector1, Vector vector2)
         {
             if (vector1.Length() != vector2.Length()) throw new ArgumentException("Tried to find the dot product of vectors of different lengths.");
@@ -29,6 +44,10 @@ namespace further_maths
             }
             return sum;
         }
+        /// <summary>
+        /// Calculates the magnitude of the vector.
+        /// </summary>
+        /// <returns></returns>
         public double Magnitude()
         {
             double sumOfSquares = 0;
@@ -38,12 +57,23 @@ namespace further_maths
             }
             return Math.Sqrt(sumOfSquares);
         }
+        /// <summary>
+        /// Calculates the angle between two given vectors, in degrees.
+        /// </summary>
+        /// <param name="vector1">First Vector</param>
+        /// <param name="vector2">Second Vector</param>
+        /// <returns></returns>
         public static double AngleBetweenVectors(Vector vector1, Vector vector2)
         {
             double dotProduct = Vector.Dot(vector1, vector2);
             double CosineOfAngle = dotProduct / (vector1.Magnitude() * vector2.Magnitude());
             return Math.Acos(CosineOfAngle) * 180/Math.PI;
         }
+        /// <summary>
+        /// Returns a string representing the current object, using an expression of the basic vectors.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException">Vectors of length > 3 are not currently supported.</exception>
         public override string ToString() 
         {
             if (this.Length() == 1) return $"{this[0]}i";

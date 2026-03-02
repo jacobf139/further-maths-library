@@ -39,6 +39,11 @@ namespace further_maths
         /// <param name="dimension">The dimension to return</param>
         /// <returns></returns>
         public int dim(int dimension) => matrix.GetLength(dimension);
+        /// <summary>
+        /// Converts the current object to the vector class, if it has nx1 order.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="DimensionMismatch"></exception>
         public Vector ToVector()
         {
             if (matrix.GetLength(1) != 1) throw new DimensionMismatch("Tried to convert a matrix with more than one column to a vector");
@@ -49,6 +54,10 @@ namespace further_maths
             }
             return vector;
         }
+        /// <summary>
+        /// Returns a boolean depending on whether the matrix is square.
+        /// </summary>
+        /// <returns></returns>
         public bool isSquare() => dim(0) == dim(1);
         public double this[int row, int col]
         {
@@ -92,6 +101,11 @@ namespace further_maths
 
             return result;
         }
+        /// <summary>
+        /// Returns an identity matrix of the given size.
+        /// </summary>
+        /// <param name="size">The size of the identity</param>
+        /// <returns></returns>
         public static Matrix Identity(int size)
         {
             Matrix identity = new Matrix(size, size);
