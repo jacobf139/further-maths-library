@@ -17,6 +17,7 @@ namespace further_maths
             Im = im;
         }
 
+
         // string conversions
 
         /// <summary>
@@ -54,6 +55,7 @@ namespace further_maths
         }
 
         public static implicit operator String(ComplexNum num) => num.ToString();
+
 
         // operators
 
@@ -194,6 +196,15 @@ namespace further_maths
         /// <param name="num">Number to take logarithm of</param>
         /// <param name="logBase">Base of the logarithm</param>
         /// <returns></returns>
-        public static ComplexNum Log(ComplexNum num, double logBase) => new ComplexNum(0, (num.argument() * Math.Log(num.modulus() * Math.E, logBase)));        
+        public static ComplexNum Log(ComplexNum num, double logBase)
+        {
+            double outputRe = Math.Log(num.modulus(), logBase);
+            double outputIm = num.argument() * Math.Log(Math.E, logBase);
+            return new ComplexNum(outputRe, outputIm);
+        }
+
+        public static ComplexNum Log(ComplexNum num, ComplexNum logBase) => Log(num) / Log(logBase);
+
+        public static ComplexNum Log(ComplexNum num) => Log(num, Math.E);
     }
 }
