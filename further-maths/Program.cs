@@ -14,9 +14,10 @@ namespace further_maths
     {
         static void Main(string[] args)
         {
-            ComplexNum num1 = ComplexNum.Parse("3+-2i");
-            Console.WriteLine(ComplexNum.Pow(num1, -1));
-            Matrix m1 = Matrix.Identity(2);
+            ComplexNum numBase = new ComplexNum(3.1, 3.1);
+            ComplexNum power = new ComplexNum(3.1, 3.1);
+            ComplexNum num = ComplexNum.Pow(numBase, 2);
+            Console.WriteLine(num);
         }
     }
 }
