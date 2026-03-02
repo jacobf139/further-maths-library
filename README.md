@@ -52,11 +52,17 @@ Stores a complex number as a double for the ℝ Part and a double for the 𝕀 P
 
 ```.argument()``` - returns the argument of the complex number.
 
+```.IsReal()``` - Returns whether the number is a real number (has no imaginary part).
+
+```.IsImaginary()``` - Returns whether the number is an imaginary number (has no real part).
+
 ```.ToString()``` - converts the complex number into a string. e.g. 2+3i
 
 ```ComplexNum.Pow( ComplexNum: num, double: power )``` - calulcates the number to a power, with the output as a complex number. (note: currently not accurate)
 
 ```ComplexNum.Sqrt( ComplexNum/double: num )``` - returns the square root of the number as a complex number.
+
+```ComplexNum.Log( ComplexNum: num, ComplexNum: base)``` - returns the logarithm of a number to a base, with support for complex numbers in each field. Leaving the base field blank returns the natural logarithm (log base e).
 
 ## Rational Numbers / Fractions
 Class: ```Rational```
