@@ -32,6 +32,12 @@ namespace further_maths
             return $"{Re}+{Im}i";
         }
          
+        /// <summary>
+        /// Parses a string and returns an equivalent complex number.
+        /// </summary>
+        /// <param name="input">String to parse</param>
+        /// <returns></returns>
+        /// <exception cref="FormatException"></exception>
         public static ComplexNum Parse(string input)
         {
             if (string.IsNullOrWhiteSpace(input)) throw new FormatException("Cannot parse an empty string");
@@ -55,6 +61,14 @@ namespace further_maths
         }
 
         public static implicit operator String(ComplexNum num) => num.ToString();
+
+        public static ComplexNum RegexParse(string input)
+        {
+            string pattern = "^$";
+            double outputRe = 0;
+            double outputIm = 0;
+            return new ComplexNum(outputRe, outputIm);
+        }
 
 
         // operators
@@ -116,6 +130,12 @@ namespace further_maths
         public bool IsReal() => Im == 0;
 
         /// <summary>
+        /// Returns whether the number is imaginary. (if it has no real part)
+        /// </summary>
+        /// <returns></returns>
+        public bool IsImaginary() => Re == 0;
+
+        /// <summary>
         /// Returns the modulus of the complex number.
         /// </summary>
         /// <returns></returns>
@@ -131,11 +151,17 @@ namespace further_maths
             if (Re < 0 && Im >= 0) theta += Math.PI;
             if (Re < 0 && Im < 0) theta -= Math.PI;
             return theta;
-        }        
+        }
 
 
         // Exponential & Logarithmic Functions
 
+        /// <summary>
+        /// Calculates Calculates the number to a power, including complex values.
+        /// </summary>
+        /// <param name="num">The base of the power</param>
+        /// <param name="power">The power</param>
+        /// <returns></returns>
         public static ComplexNum Pow(ComplexNum num, ComplexNum power)
         {
             double outputRe = Math.Pow(num.modulus(), power.Re) * Math.Exp(-1 * power.Im * num.argument()) * Math.Cos((num.argument() * power.Re) + (Math.Log(num.modulus()) * power.Im));
@@ -146,8 +172,8 @@ namespace further_maths
         /// <summary>
         /// Calculates Calculates the number to a power, including complex values.
         /// </summary>
-        /// <param name="num"></param>
-        /// <param name="power"></param>
+        /// <param name="num">The base of the power</param>
+        /// <param name="power">The power</param>
         /// <returns></returns>
         public static ComplexNum Pow(ComplexNum num, double power)
         {
@@ -156,6 +182,12 @@ namespace further_maths
             return new ComplexNum(resultRe, resultIm);
         }
 
+        /// <summary>
+        /// Calculates Calculates the number to a power, including complex values.
+        /// </summary>
+        /// <param name="num">The base of the power</param>
+        /// <param name="power">The power</param>
+        /// <returns></returns>
         public static ComplexNum Pow(ComplexNum num, int power)
         {
             ComplexNum initialNum = num;
@@ -163,11 +195,23 @@ namespace further_maths
             return num;
         }
 
+        /// <summary>
+        /// Calculates Calculates the number to a power, including complex values.
+        /// </summary>
+        /// <param name="num">The base of the power</param>
+        /// <param name="power">The power</param>
+        /// <returns></returns>
         public static ComplexNum Pow(double num, ComplexNum power)
         {
             return ComplexNum.Pow((ComplexNum)num, power.Re) * ((Math.Cos(Math.Log(num) * power.Im)) + (ComplexNum.I * (Math.Sin(Math.Log(num) * power.Im))));
         }
 
+        /// <summary>
+        /// Calculates e to the power of the given number, including complex values.
+        /// </summary>
+        /// <param name="num">The base of the power</param>
+        /// <param name="power">The power</param>
+        /// <returns></returns>
         public static ComplexNum Exp(ComplexNum num) => Pow(num, Math.E);
 
 
@@ -203,8 +247,21 @@ namespace further_maths
             return new ComplexNum(outputRe, outputIm);
         }
 
+        /// <summary>
+        /// Calculates the logarithm of a number with a given base, including complex values.
+        /// </summary>
+        /// <param name="num">Number to take logarithm of</param>
+        /// <param name="logBase">Base of the logarithm</param>
+        /// <returns></returns>
         public static ComplexNum Log(ComplexNum num, ComplexNum logBase) => Log(num) / Log(logBase);
 
+        /// <summary>
+        /// Calculates the logarithm of a number, base e, including complex values.
+        /// Calculates the natural logarithm / ln / log e
+        /// </summary>
+        /// <param name="num">Number to take logarithm of</param>
+        /// <param name="logBase">Base of the logarithm</param>
+        /// <returns></returns>
         public static ComplexNum Log(ComplexNum num) => Log(num, Math.E);
     }
 }
