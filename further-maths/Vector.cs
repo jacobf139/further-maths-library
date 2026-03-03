@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,23 +11,126 @@ namespace further_maths
     internal class Vector
     {
         private Matrix matrix;
-        public Vector(int size) => matrix = new Matrix(size, 1);
-        public Vector(Matrix mat) => matrix = mat;
+        public Vector(int size)
+        {
+            matrix = new Matrix(size, 1);
+        }
+        public Vector(Matrix mat)
+        {
+            matrix = mat;
+        }
         public double this[int index]
         {
             get { return matrix[index, 0]; }
             set { matrix[index,0] = value; }
         }
+
+
+        // Conversions
+
         /// <summary>
         /// Converts the current object to the matrix class.
         /// </summary>
         /// <returns></returns>
         public Matrix ToMatrix() => matrix;
+
+        /// <summary>
+        /// Returns a string representing the current object, using an expression of the basic vectors.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException">Vectors of length > 3 are not currently supported.</exception>
+        public override string ToString()
+        {
+            if (this.Length() == 1) return $"{this[0]}i";
+            if (this.Length() == 2) return $"{this[0]}i+{this[1]}j";
+            if (this.Length() == 3) return $"{this[0]}i+{this[1]}j+{this[2]}k";
+            else throw new NotImplementedException("Haven't implemented ToString() for vectors of a length > 3.");
+        }
+
+        public static implicit operator String(Vector v1) => v1.ToString();
+
+
+        // operators
+
+        /// <summary>
+        /// Add two vectors together
+        /// </summary>
+        /// <param name="v1">First vector</param>
+        /// <param name="v2">Second vector</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static Vector operator +(Vector v1, Vector v2)
+        {
+            if (v1.Length() != v2.Length()) throw new ArgumentException("Cannot add two vectors of different lengths");
+
+            Vector output = new Vector(v1.Length());
+            for (int i = 0; i < v1.Length(); i++) output[i] = v1[i] + v2[i];
+            return output;
+        }
+
+        /// <summary>
+        /// Subtract one vector from another
+        /// </summary>
+        /// <param name="v1">Vector</param>
+        /// <param name="v2">Vector to subtract</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static Vector operator -(Vector v1, Vector v2)
+        {
+            if (v1.Length() != v2.Length()) throw new ArgumentException("Cannot add two vectors of different lengths");
+
+            Vector output = new Vector(v1.Length());
+            for (int i = 0; i < v1.Length(); i++) output[i] = v1[i] - v2[i];
+            return output;
+        }
+
+        /// <summary>
+        /// Multiply a vector by a scalar
+        /// </summary>
+        /// <param name="scalar"></param>
+        /// <param name="v"></param>
+        /// <returns></returns>
+        public static Vector operator *(double scalar, Vector v)
+        {
+            Vector output = new Vector(v.Length());
+            for (int i = 0; i < v.Length(); i++) output[i] = scalar * v[i];
+            return output;
+        }
+
+        /// <summary>
+        /// Multiply a vector by a scalar
+        /// </summary>
+        /// <param name="scalar"></param>
+        /// <param name="v"></param>
+        /// <returns></returns>
+        public static Vector operator *(Vector v, double scalar) => scalar * v;
+
+
+        // Vector properties
+
         /// <summary>
         /// Returns the length of the current vector.
         /// </summary>
         /// <returns></returns>
         public int Length() => matrix.dim(0);
+
+        /// <summary>
+        /// Calculates the magnitude of the vector.
+        /// </summary>
+        /// <returns></returns>
+        public double Magnitude()
+        {
+            double sumOfSquares = 0;
+            for (int i = 0; i < this.Length(); i++)
+            {
+                sumOfSquares += Math.Pow(this[i], 2);
+            }
+            return Math.Sqrt(sumOfSquares);
+        }
+
+        
+        // Vector Functions
+
         /// <summary>
         /// Returns the dot product of two vector objects.
         /// </summary>
@@ -44,19 +148,7 @@ namespace further_maths
             }
             return sum;
         }
-        /// <summary>
-        /// Calculates the magnitude of the vector.
-        /// </summary>
-        /// <returns></returns>
-        public double Magnitude()
-        {
-            double sumOfSquares = 0;
-            for (int i = 0; i < this.Length(); i++)
-            {
-                sumOfSquares += Math.Pow(this[i], 2);
-            }
-            return Math.Sqrt(sumOfSquares);
-        }
+
         /// <summary>
         /// Calculates the angle between two given vectors, in degrees.
         /// </summary>
@@ -67,20 +159,10 @@ namespace further_maths
         {
             double dotProduct = Vector.Dot(vector1, vector2);
             double CosineOfAngle = dotProduct / (vector1.Magnitude() * vector2.Magnitude());
-            return Math.Acos(CosineOfAngle) * 180/Math.PI;
+            return Math.Acos(CosineOfAngle) * 180 / Math.PI;
         }
-        /// <summary>
-        /// Returns a string representing the current object, using an expression of the basic vectors.
-        /// </summary>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException">Vectors of length > 3 are not currently supported.</exception>
-        public override string ToString() 
-        {
-            if (this.Length() == 1) return $"{this[0]}i";
-            if (this.Length() == 2) return $"{this[0]}i+{this[1]}j";
-            if (this.Length() == 3) return $"{this[0]}i+{this[1]}j+{this[2]}k";
-            else throw new NotImplementedException("Haven't implemented ToString() for vectors of a length > 3.");
-        }
-        public static implicit operator String(Vector v1) => v1.ToString();
+
+
+
     }
 }

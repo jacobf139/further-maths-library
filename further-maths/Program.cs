@@ -14,11 +14,7 @@ namespace further_maths
     {
         static void Main(string[] args)
         {
-            ComplexNum numBase = new ComplexNum(2.11, 3.1);
-            ComplexNum num = new ComplexNum(6.1, 4.1);
-            Console.WriteLine(ComplexNum.Log(num));
-            Console.WriteLine(ComplexNum.Log(numBase));
-            Console.WriteLine(ComplexNum.Log(num,numBase));
+            // main
         }
     }
 }

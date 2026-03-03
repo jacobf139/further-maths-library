@@ -17,6 +17,10 @@ namespace further_maths
             Im = im;
         }
 
+        // constants
+
+        public static readonly ComplexNum I = new ComplexNum(0, 1);
+
 
         // string conversions
 
@@ -77,56 +81,68 @@ namespace further_maths
 
         // operators
 
+        /// <summary>
+        /// Add two complex numbers together.
+        /// </summary>
+        /// <param name="a">First number</param>
+        /// <param name="b">Second number</param>
+        /// <returns></returns>
         public static ComplexNum operator +(ComplexNum a, ComplexNum b)
         {
-            ComplexNum result = new(0,0);
-            result.Re = a.Re + b.Re;
-            result.Im = a.Im + b.Im;
-            return result;
+            double outputRe = a.Re + b.Re;
+            double outputIm = a.Im + b.Im;
+            return new ComplexNum(outputRe, outputIm);
         }
 
+        /// <summary>
+        /// Minus one complex num from another.
+        /// </summary>
+        /// <param name="a">Number</param>
+        /// <param name="b">Number to subtract</param>
+        /// <returns></returns>
         public static ComplexNum operator -(ComplexNum a, ComplexNum b)
         {
-            ComplexNum result = new(0,0);
-            result.Re = a.Re - b.Re;
-            result.Im = a.Im - b.Im;
-            return result;
+            double outputRe = a.Re - b.Re;
+            double outputIm = a.Im - b.Im;
+            return new ComplexNum(outputRe, outputIm);
         }
 
+        /// <summary>
+        /// Multiply two complex numbers together.
+        /// </summary>
+        /// <param name="a">First number</param>
+        /// <param name="b">Second number</param>
+        /// <returns></returns>
         public static ComplexNum operator *(ComplexNum a, ComplexNum b)
         {
-            ComplexNum result = new(0,0);
-            result.Re = a.Re * b.Re - a.Im * b.Im;
-            result.Im = a.Re * b.Im + a.Im * b.Re;
-            return result;
+            double outputRe = a.Re * b.Re - a.Im * b.Im;
+            double outputIm = a.Re * b.Im + a.Im * b.Re;
+            return new ComplexNum(outputRe, outputIm);
         }
 
+        /// <summary>
+        /// Divide one complex number by another
+        /// </summary>
+        /// <param name="a">Number</param>
+        /// <param name="b">Number to divide by</param>
+        /// <returns></returns>
         public static ComplexNum operator /(ComplexNum a, ComplexNum b)
         {  
-            ComplexNum result = new(0,0);
-            result.Re = (a.Re * b.Re + a.Im * b.Im) / (b.Re * b.Re + b.Im * b.Im);
-            result.Im = (a.Im * b.Re - a.Re * b.Im) / (b.Re * b.Re + b.Im * b.Im);
-            return result;
+            double outputRe = (a.Re * b.Re + a.Im * b.Im) / (b.Re * b.Re + b.Im * b.Im);
+            double outputIm = (a.Im * b.Re - a.Re * b.Im) / (b.Re * b.Re + b.Im * b.Im);
+            return new ComplexNum(outputRe, outputIm);
         }
 
-        public static implicit operator ComplexNum(double num) => new ComplexNum(num, 0);
-
-        public static readonly ComplexNum I = new ComplexNum(0, 1);
+        public static implicit operator ComplexNum(double num) => new ComplexNum(num, 0);        
 
 
-        // Complex number properties
+        // properties
 
         /// <summary>
         /// Returns the complex conjugate of the number.
         /// </summary>
         /// <returns></returns>
-        public ComplexNum conjugate()
-        {
-            ComplexNum result = new(0,0);
-            result.Re = Re;
-            result.Im = -1 * Im;
-            return result;
-        }
+        public ComplexNum conjugate() => new ComplexNum(this.Re, -this.Im);
 
         /// <summary>
         /// Returns whether the number is real. (if it has no imaginary part)
@@ -196,8 +212,11 @@ namespace further_maths
         public static ComplexNum Pow(ComplexNum num, int power)
         {
             ComplexNum initialNum = num;
-            for (int i = 1; i < power; i++) num *= initialNum;
-            return num;
+            ComplexNum output = new ComplexNum(1, 0);
+            int absPower = Math.Abs(power);
+            for (int i = 0; i < absPower; i++) output *= initialNum;
+            if (power < 0) output = 1 / output;
+            return output;
         }
 
         /// <summary>
