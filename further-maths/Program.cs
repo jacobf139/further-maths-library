@@ -19,7 +19,6 @@ namespace further_maths
             Console.WriteLine(ComplexNum.Log(num));
             Console.WriteLine(ComplexNum.Log(numBase));
             Console.WriteLine(ComplexNum.Log(num,numBase));
-            Math.Log
         }
     }
 }

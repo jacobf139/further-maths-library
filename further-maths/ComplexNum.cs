@@ -24,10 +24,14 @@ namespace further_maths
         /// Returns a string representing the number.
         /// </summary>
         /// <returns></returns>
-        public new string ToString()
+        public override string ToString()
         {
             if (this.Im == 0) return $"{Re}";
+            if (this.Re == 0 && this.Im == 1) return "i";
+            if (this.Re == 0 && this.Im == -1) return "-i";
             if (this.Re == 0) return $"{Im}i";
+            if (this.Im == 1) return $"{Re}+i";
+            if (this.Im == -1) return $"{Re}-i";
             if (this.Im < 0) return $"{Re}{Im}i";
             return $"{Re}+{Im}i";
         }
@@ -108,6 +112,7 @@ namespace further_maths
         public static implicit operator ComplexNum(double num) => new ComplexNum(num, 0);
 
         public static readonly ComplexNum I = new ComplexNum(0, 1);
+
 
         // Complex number properties
 
