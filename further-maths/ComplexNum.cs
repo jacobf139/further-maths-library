@@ -9,13 +9,17 @@ namespace further_maths
 {
     internal class ComplexNum
     {
-        public double Re;
-        public double Im;
+        private double Re;
+        private double Im;
         public ComplexNum(double re, double im)
         {
             Re = re;
             Im = im;
         }
+
+        public static double Real(ComplexNum num) => num.Re;
+        public static double Imaginary(ComplexNum num) => num.Im;
+
 
         // constants
 
