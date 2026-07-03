@@ -216,7 +216,7 @@ namespace further_maths
         public static ComplexNum Pow(ComplexNum num, int power)
         {
             ComplexNum initialNum = num;
-            ComplexNum output = new ComplexNum(1, 0);
+            ComplexNum output = 1;
             int absPower = Math.Abs(power);
             for (int i = 0; i < absPower; i++) output *= initialNum;
             if (power < 0) output = 1 / output;

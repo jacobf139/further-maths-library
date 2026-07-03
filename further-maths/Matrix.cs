@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace further_maths
 {
-    internal class Matrix
+    public class Matrix
     {
         private double[,] matrix;
 
