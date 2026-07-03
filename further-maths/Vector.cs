@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace further_maths
 {
-    internal class Vector
+    public class Vector
     {
         private Matrix matrix;
         public Vector(int size)

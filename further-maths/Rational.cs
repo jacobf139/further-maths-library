@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace further_maths
 {
-    internal class Rational
+    public class Rational
     {
         private int numerator;
         private int denominator;

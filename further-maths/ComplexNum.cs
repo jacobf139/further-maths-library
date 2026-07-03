@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace further_maths
 {
-    internal class ComplexNum
+    public class ComplexNum
     {
         private double Re;
         private double Im;

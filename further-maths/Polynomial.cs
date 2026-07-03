@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace further_maths
 {
-    internal class Polynomial
+    public class Polynomial
     {
         protected int order;
         protected double[] coefficients;
