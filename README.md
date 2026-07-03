@@ -64,6 +64,20 @@ Stores a complex number as a double for the ℝ Part and a double for the 𝕀 P
 
 ```ComplexNum.Log( ComplexNum: num, ComplexNum: base)``` - returns the logarithm of a number to a base, with support for complex numbers in each field. Leaving the base field blank returns the natural logarithm (log base e).
 
+## Dual Numbers 
+Class: ```DualNum```
+
+Stores a dual number as a double for the real Part and a double for the dual Part, with support for standard operations ( + , - , * , / ).
+### Constants 
+
+```DualNum.Epsilon``` - outputs the constant ε.
+
+### Functions 
+
+```.ToString()``` - converts tehe dual number into a string. e.g. 3+4ε
+
+```.ToMatrix()``` - converts the dual number into a matrix representing the dual number.
+
 ## Rational Numbers / Fractions
 Class: ```Rational```
 
